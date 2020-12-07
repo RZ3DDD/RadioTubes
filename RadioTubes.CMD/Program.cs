@@ -18,6 +18,12 @@ namespace RadioTubes.CMD
             Console.WriteLine($"{nameof(name)}: {name}");
             Console.ReadLine();
 
+            Console.Write("Введите дату рождения пользователя: ");
+            var dateOfBirth = Console.ReadLine();
+            Console.WriteLine($"{nameof(dateOfBirth)}: {dateOfBirth}");
+            Console.ReadLine();
+
+
             Console.Write("Введите страну пользователя: ");
             var country = Console.ReadLine();
 
