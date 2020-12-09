@@ -130,10 +130,9 @@ namespace RadioTubes.MBL.Model
             Location = location;
         }
 
-        // TODO: Переопределить ToString() для User
         public override string ToString()
         {
-            return $"{nameof(UserName)}: {UserName}\n{nameof(FirstName)}: {FirstName}\n{nameof(MiddleName)}: {MiddleName}\n{nameof(SecondName)}: {SecondName}\n{nameof(Gender)}: {Gender}\n{nameof(DateOfBirth)}: {DateOfBirth}\n{nameof(Location)}: {Location}\n";
+            return $"{nameof(UserName)}: {UserName}\n{nameof(FirstName)}: {FirstName}\n{nameof(MiddleName)}: {MiddleName}\n{nameof(SecondName)}: {SecondName}\n{nameof(Gender)}: {Gender}\n{nameof(DateOfBirth)}: {DateOfBirth:dd/MM/yyyy}\n{nameof(Location)}: {Location}\n";
         }
     }
 }
