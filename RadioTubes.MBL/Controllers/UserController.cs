@@ -3,13 +3,13 @@ using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace RadioTubes.CMD.Controller
+namespace RadioTubes.MBL.Controller
 {
 
     /// <summary>
     /// Контроллер пользователя.
     /// </summary>
-    class UserController
+    public class UserController
     {
         /// <summary>
         /// Пользователь приложения.

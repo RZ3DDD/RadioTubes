@@ -7,7 +7,7 @@ namespace RadioTubes.MBL.Model
     /// Пользователь (User)
     /// </summary>
     [Serializable]
-    class User
+    public class User
     {
         #region Свойства... 
         private string firstName;
@@ -133,7 +133,7 @@ namespace RadioTubes.MBL.Model
         // TODO: Переопределить ToString() для User
         public override string ToString()
         {
-            return base.ToString();
+            return $"{nameof(UserName)}: {UserName}\n{nameof(FirstName)}: {FirstName}\n{nameof(MiddleName)}: {MiddleName}\n{nameof(SecondName)}: {SecondName}\n{nameof(Gender)}: {Gender}\n{nameof(DateOfBirth)}: {DateOfBirth}\n{nameof(Location)}: {Location}\n";
         }
     }
 }

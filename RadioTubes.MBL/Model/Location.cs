@@ -7,7 +7,7 @@ namespace RadioTubes.MBL.Model
     /// Место жительства (Location)
     /// </summary>
     [Serializable]
-    class Location
+    public class Location
     {
         /// <summary>
         /// Страна проживания пользователя
@@ -25,7 +25,7 @@ namespace RadioTubes.MBL.Model
         /// </summary>
         /// <param name="country"> Страна проживания </param>
         /// <param name="locality"> Населённый пункт </param>
-        public Location(string country, string locality)
+        public Location(string country, string locality = "")
         {
             if (string.IsNullOrWhiteSpace(country))
             {
