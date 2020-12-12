@@ -16,29 +16,34 @@ namespace RadioTubes.CMD
 
             var name = InputParametr("Имя пользователя");
 
-            var dateOfBirth = InputParametr("Дата рождения пользователя");
 
-            var genderUser = InputParametr("Пол", 1);
-            var countryUser = InputParametr("Страна пользователя");
+            ////DateTime datetimeOfBirth = DateTime.Parse(dateOfBirth);
+            //User user = new User(name,
+            //                     new Gender(genderUser),
+            //                     DateTime.Parse(dateOfBirth),
+            //                     new Location(countryUser));
 
-            //DateTime datetimeOfBirth = DateTime.Parse(dateOfBirth);
-            User user = new User(name,
-                                 new Gender(genderUser),
-                                 DateTime.Parse(dateOfBirth),
-                                 new Location(countryUser));
 
+            //Console.WriteLine("\n");
+            //Console.WriteLine(user);
+            //Console.WriteLine("\n -------------------- \n");
+
+            var userController = new UserController(name);
+
+            if (userController.CurrentUser.Gender==null || userController.CurrentUser.DateOfBirth==null || userController.CurrentUser.Location==null)
+            {
+                Console.WriteLine("Введите обязательные параметры пользователя:\n");
+                var dateOfBirth = InputParametr("Дата рождения пользователя");
+                var genderUser = InputParametr("Пол", 1);
+                var countryUser = InputParametr("Страна пользователя");
+                var locateUser = InputParametr("Место проживания пользователя");
+                userController.SetRequiredParameters(new Gender(genderUser),
+                                                     DateTime.Parse(dateOfBirth),
+                                                     new Location(countryUser, locateUser));
+            }
 
             Console.WriteLine("\n");
-            Console.WriteLine(user);
-            Console.WriteLine("\n -------------------- \n");
-
-            var userController = new UserController(user);
-            userController.Save();
-
-            var userCopy = new UserController().User;
-
-            Console.WriteLine("\n");
-            Console.WriteLine(userCopy);
+            Console.WriteLine(userController.CurrentUser);
             Console.WriteLine("\n -------------------- \n");
 
             Console.ReadLine();

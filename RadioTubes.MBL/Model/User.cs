@@ -72,12 +72,12 @@ namespace RadioTubes.MBL.Model
         /// <summary>
         /// Пол пользователя
         /// </summary>
-        public Gender Gender { get; }
+        public Gender Gender { get; set; }
 
         /// <summary>
         /// Дата рождения
         /// </summary>
-        public DateTime DateOfBirth { get; }
+        public DateTime DateOfBirth { get; set; }
 
         /// <summary>
         /// Место жительства пользователя
@@ -89,47 +89,15 @@ namespace RadioTubes.MBL.Model
         /// Создать пользователя
         /// </summary>
         /// <param name="userName"> Имя пользователя в системе </param>
-        /// <param name="gender"> Пол пользователя </param>
-        /// <param name="dateOfBirth"> Дата рождения </param>
-        /// <param name="location"> Место жительства </param>
-        public User(string userName,
-                    Gender gender,
-                    DateTime dateOfBirth,
-                    Location location)
+        public User(string userName)
         {
-            #region Проверка корректности вводмимых параметров...
+
             if (string.IsNullOrWhiteSpace(userName))
             {
                 throw new ArgumentException($"{nameof(userName)} не может быть пустым или содержать только пробел.", nameof(userName));
             }
-
-            if (gender is null)
-            {
-                throw new ArgumentNullException(nameof(gender));
-            }
-
-            if (dateOfBirth > DateTime.Now || dateOfBirth < DateTime.Parse("01.01.1920"))
-            {
-                throw new ArgumentException($"{nameof(dateOfBirth)} - не правдоподобная дата рождения.", nameof(dateOfBirth));
-            }
-
-            //if (!DateTime.TryParse(dateOfBirth, out DateTime result))
-            //{
-            //    throw new ArgumentException($"{nameof(dateOfBirth)}, результат = {nameof(result)} - некорректная дата.", nameof(dateOfBirth));
-            //}
-
-            if (location is null)
-            {
-                throw new ArgumentNullException($"Location: {nameof(location)} - не указано место проживания.", nameof(location));
-            }
-            #endregion
-
             UserName = userName;
-            Gender = gender;
-            DateOfBirth = dateOfBirth;
-            Location = location;
         }
-
         public override string ToString()
         {
             return $"{nameof(UserName)}: {UserName}\n{nameof(FirstName)}: {FirstName}\n{nameof(MiddleName)}: {MiddleName}\n{nameof(SecondName)}: {SecondName}\n{nameof(Gender)}: {Gender}\n{nameof(DateOfBirth)}: {DateOfBirth:dd/MM/yyyy}\n{nameof(Location)}: {Location}\n";
