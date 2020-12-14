@@ -95,7 +95,7 @@ namespace RadioTubes.MBL.Controller
         /// <param name="gender"> Пол пользователя </param>
         /// <param name="dateOfBirth"> Дата рождения пользователя </param>
         /// <param name="location"> Место жительства пользователя </param>
-        public void SetRequiredParameters (Gender gender,
+        public void SetRequiredParameters (string gender,
                                            DateTime dateOfBirth,
                                            Location location)
         {
@@ -116,7 +116,7 @@ namespace RadioTubes.MBL.Controller
             }
             #endregion
 
-            CurrentUser.Gender = gender;
+            CurrentUser.Gender = new Gender(gender);
             CurrentUser.DateOfBirth = dateOfBirth;
             CurrentUser.Location = location;
             UpdateCurrentUserData();
@@ -129,18 +129,18 @@ namespace RadioTubes.MBL.Controller
         /// <param name="secondName"> Фамилия пользователя  </param>
         /// <param name="middleName"> Отчество пользователя </param>
         public void SetOptionalParameters(string firstName,
-                                          string secondName,
-                                          string middleName = "")
+                                          string middleName,
+                                          string secondName)
         {
             #region Проверка корректности вводимых параметров...
             if (string.IsNullOrWhiteSpace(firstName))
             {
-                throw new ArgumentException($"{nameof(firstName)} не может быть пустым или содержать только пробел.", nameof(firstName));
+                //throw new ArgumentException($"{nameof(firstName)} не может быть пустым или содержать только пробел.", nameof(firstName));
             }
 
             if (string.IsNullOrWhiteSpace(secondName))
             {
-                throw new ArgumentException($"{nameof(secondName)} не может быть пустым или содержать только пробел.", nameof(secondName));
+                //throw new ArgumentException($"{nameof(secondName)} не может быть пустым или содержать только пробел.", nameof(secondName));
             }
             #endregion
 

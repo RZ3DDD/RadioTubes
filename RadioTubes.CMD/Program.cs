@@ -26,20 +26,55 @@ namespace RadioTubes.CMD
 
             //Console.WriteLine("\n");
             //Console.WriteLine(user);
-            //Console.WriteLine("\n -------------------- \n");
 
             var userController = new UserController(name);
 
             if (userController.CurrentUser.Gender==null || userController.CurrentUser.DateOfBirth==null || userController.CurrentUser.Location==null)
             {
-                Console.WriteLine("Введите обязательные параметры пользователя:\n");
-                var dateOfBirth = InputParametr("Дата рождения пользователя");
-                var genderUser = InputParametr("Пол", 1);
-                var countryUser = InputParametr("Страна пользователя");
-                var locateUser = InputParametr("Место проживания пользователя");
-                userController.SetRequiredParameters(new Gender(genderUser),
-                                                     DateTime.Parse(dateOfBirth),
-                                                     new Location(countryUser, locateUser));
+                Console.WriteLine("\nВведите обязательные параметры пользователя");
+                Console.WriteLine(" -------------------- ");
+
+                DateTime dateOfBirth;
+
+                while(true)
+                {
+                    if(DateTime.TryParse(InputParametr("Дата рождения пользователя"), out dateOfBirth))
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Неверный формат даты рождения. Должно: DD.MM.YYYY или DD-MM-YYYY или DD/MM/YYYY");
+                    }
+                }
+
+                userController.SetRequiredParameters(InputParametr("Пол", 1),
+                                                     dateOfBirth,
+                                                     new Location(InputParametr("Страна пользователя"),
+                                                                  InputParametr("Населённый пункт проживания пользователя")));
+                
+                ConsoleKeyInfo cki = new ConsoleKeyInfo('y', ConsoleKey.Y, false, false, false);
+                Console.Write("\n\nБудете вводить необязательные параметры пользователя? (Y/n): ");
+                do
+                {
+                    var ckiTemp = cki;
+                    cki = Console.ReadKey(true);
+                    if (ckiTemp.Key == ConsoleKey.Y && cki.Key == ConsoleKey.Enter)
+                    {
+                        cki = new ConsoleKeyInfo('y', ConsoleKey.Y, false, false, false);
+                        break;
+                    }
+                    if (cki.Key == ConsoleKey.Enter) cki = ckiTemp;
+
+                } while (cki.Key != ConsoleKey.Y && cki.Key != ConsoleKey.N);
+
+                Console.WriteLine("\n -------------------- ");
+                if(cki.Key == ConsoleKey.Y)
+                {
+                    userController.SetOptionalParameters(InputParametr("Имя пользователя"),
+                                                         InputParametr("Отчество пользователя"),
+                                                         InputParametr("Фамилия пользователя"));
+                }
             }
 
             Console.WriteLine("\n");

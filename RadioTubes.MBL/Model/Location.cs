@@ -25,7 +25,7 @@ namespace RadioTubes.MBL.Model
         /// </summary>
         /// <param name="country"> Страна проживания </param>
         /// <param name="locality"> Населённый пункт </param>
-        public Location(string country, string locality = "")
+        public Location(string country, string locality)
         {
             if (string.IsNullOrWhiteSpace(country))
             {
@@ -35,12 +35,9 @@ namespace RadioTubes.MBL.Model
 
             if (string.IsNullOrWhiteSpace(locality))
             {
-                Locality = "Не указан";
+                throw new ArgumentNullException("Населённый пункт должен быть указан обязательно!", nameof(country));
             }
-            else
-            {
-                Locality = locality;
-            }
+            Locality = locality;
         }
 
         public override string ToString()
