@@ -17,28 +17,18 @@ namespace RadioTubes.CMD
             var name = InputParametr("Имя пользователя");
 
 
-            ////DateTime datetimeOfBirth = DateTime.Parse(dateOfBirth);
-            //User user = new User(name,
-            //                     new Gender(genderUser),
-            //                     DateTime.Parse(dateOfBirth),
-            //                     new Location(countryUser));
-
-
-            //Console.WriteLine("\n");
-            //Console.WriteLine(user);
-
             var userController = new UserController(name);
 
-            if (userController.CurrentUser.Gender==null || userController.CurrentUser.DateOfBirth==null || userController.CurrentUser.Location==null)
+            if (userController.CurrentUser.Gender == null || userController.CurrentUser.DateOfBirth == null || userController.CurrentUser.Location == null)
             {
                 Console.WriteLine("\nВведите обязательные параметры пользователя");
                 Console.WriteLine(" -------------------- ");
 
                 DateTime dateOfBirth;
 
-                while(true)
+                while (true)
                 {
-                    if(DateTime.TryParse(InputParametr("Дата рождения пользователя"), out dateOfBirth))
+                    if (DateTime.TryParse(InputParametr("Дата рождения пользователя"), out dateOfBirth))
                     {
                         break;
                     }
@@ -52,7 +42,7 @@ namespace RadioTubes.CMD
                                                      dateOfBirth,
                                                      new Location(InputParametr("Страна пользователя"),
                                                                   InputParametr("Населённый пункт проживания пользователя")));
-                
+
                 ConsoleKeyInfo cki = new ConsoleKeyInfo('y', ConsoleKey.Y, false, false, false);
                 Console.Write("\n\nБудете вводить необязательные параметры пользователя? (Y/n): ");
                 do
@@ -69,7 +59,7 @@ namespace RadioTubes.CMD
                 } while (cki.Key != ConsoleKey.Y && cki.Key != ConsoleKey.N);
 
                 Console.WriteLine("\n -------------------- ");
-                if(cki.Key == ConsoleKey.Y)
+                if (cki.Key == ConsoleKey.Y)
                 {
                     userController.SetOptionalParameters(InputParametr("Имя пользователя"),
                                                          InputParametr("Отчество пользователя"),

@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RadioTubes.CMD", "RadioTube
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RadioTubes.MBL", "RadioTubes.MBL\RadioTubes.MBL.csproj", "{B767149F-7830-419C-86BD-462586078363}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RadioTubes.MBLTests", "RadioTubes.MBLTests2\RadioTubes.MBLTests.csproj", "{8B819B25-0169-4831-BB50-DF83A9C33C0D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{B767149F-7830-419C-86BD-462586078363}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B767149F-7830-419C-86BD-462586078363}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B767149F-7830-419C-86BD-462586078363}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B819B25-0169-4831-BB50-DF83A9C33C0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B819B25-0169-4831-BB50-DF83A9C33C0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B819B25-0169-4831-BB50-DF83A9C33C0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B819B25-0169-4831-BB50-DF83A9C33C0D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -35,7 +35,7 @@ namespace RadioTubes.MBL.Model
 
             if (string.IsNullOrWhiteSpace(locality))
             {
-                throw new ArgumentNullException("Населённый пункт должен быть указан обязательно!", nameof(country));
+                throw new ArgumentNullException("Населённый пункт должен быть указан обязательно!", nameof(locality));
             }
             Locality = locality;
         }

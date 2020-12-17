@@ -14,10 +14,13 @@ namespace RadioTubes.MBL.Controller
     public class UserController
     {
         /// <summary>
-        /// Пользователь приложения.
+        /// Пользователи приложения.
         /// </summary>
-
         public List<User> Users { get; }
+
+        /// <summary>
+        /// Текущий пользователь приложения
+        /// </summary>
         public User CurrentUser { get; }
 
         /// <summary>
@@ -28,13 +31,12 @@ namespace RadioTubes.MBL.Controller
         {
             if (string.IsNullOrWhiteSpace(userName))
             {
-                throw new ArgumentNullException("Имя пользоваителя не может быть пустым", nameof(userName));
+                throw new ArgumentNullException("Имя пользователя не может быть пустым", nameof(userName));
             }
 
             Users = GetUsersData();
             CurrentUser = Users.SingleOrDefault(u => u.UserName == userName);
-            //TODO: Чем плох List.Find(...)? 
-            //CurrentUser = Users.Find(u => u.UserName == userName);
+
             if(CurrentUser == null)
             {
                 CurrentUser = new User(userName);
@@ -68,7 +70,7 @@ namespace RadioTubes.MBL.Controller
         /// <summary>
         /// Сохранить данные списка зарегистрированных пользователей.
         /// </summary>
-        public void Save()
+        private void Save()
         {
 
             var formatter = new BinaryFormatter();
@@ -81,7 +83,7 @@ namespace RadioTubes.MBL.Controller
        /// <summary>
        /// Обновить данные текущего пользователя
        /// </summary>
-        public void UpdateCurrentUserData()
+        private void UpdateCurrentUserData()
         {
             Users.Remove(CurrentUser);
             Users.Add(CurrentUser);
@@ -107,7 +109,7 @@ namespace RadioTubes.MBL.Controller
 
             if (dateOfBirth > DateTime.Now || dateOfBirth < DateTime.Parse("01.01.1920"))
             {
-                throw new ArgumentException($"{nameof(dateOfBirth)} - не правдоподобная дата рождения.", nameof(dateOfBirth));
+                throw new ArgumentException($"{nameof(dateOfBirth)} - неправдоподобная дата рождения.", nameof(dateOfBirth));
             }
 
             if (location is null)
@@ -133,6 +135,7 @@ namespace RadioTubes.MBL.Controller
                                           string secondName)
         {
             #region Проверка корректности вводимых параметров...
+            // TODO: Продумать и реализовать проверки для ФИО
             if (string.IsNullOrWhiteSpace(firstName))
             {
                 //throw new ArgumentException($"{nameof(firstName)} не может быть пустым или содержать только пробел.", nameof(firstName));
