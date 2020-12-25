@@ -1,13 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using RadioTubes.MBL.Controller;
 using RadioTubes.MBL.Model;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RadioTubes.MBL.Controller.Tests
 {
@@ -20,7 +14,7 @@ namespace RadioTubes.MBL.Controller.Tests
             // Arrange
             // Удалить существующий файл со списком тестовых пользователей если он есть
             var fi = new FileInfo("users.dat");
-            if (fi.Exists ) fi.Delete();
+            if (fi.Exists) fi.Delete();
 
             //Act
             // Создать чистого существующего пользователя

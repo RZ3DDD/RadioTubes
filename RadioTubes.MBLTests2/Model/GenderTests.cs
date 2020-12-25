@@ -1,10 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using RadioTubes.MBL.Model;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RadioTubes.MBL.Model.Tests
 {
@@ -34,7 +29,7 @@ namespace RadioTubes.MBL.Model.Tests
             var gen = "female";
 
             // Act
-           var gender = new Gender(gen);
+            var gender = new Gender(gen);
 
             // Assert
             Assert.AreEqual(gender.ToString(), gen);

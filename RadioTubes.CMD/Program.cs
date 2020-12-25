@@ -1,6 +1,6 @@
-﻿using System;
+﻿using RadioTubes.MBL.Controller;
 using RadioTubes.MBL.Model;
-using RadioTubes.MBL.Controller;
+using System;
 
 namespace RadioTubes.CMD
 {

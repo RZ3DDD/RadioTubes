@@ -1,4 +1,5 @@
 ﻿using RadioTubes.MBL.Model;
+using RadioTubes.MBL.Controllers;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,7 +12,7 @@ namespace RadioTubes.MBL.Controller
     /// <summary>
     /// Контроллер пользователя.
     /// </summary>
-    public class UserController
+    public class UserController : ControllerBaseBinSerialization
     {
         /// <summary>
         /// Пользователи приложения.
@@ -37,13 +38,13 @@ namespace RadioTubes.MBL.Controller
             Users = GetUsersData();
             CurrentUser = Users.SingleOrDefault(u => u.UserName == userName);
 
-            if(CurrentUser == null)
+            if (CurrentUser == null)
             {
                 CurrentUser = new User(userName);
                 Users.Add(CurrentUser);
                 Save();
             }
-            
+
         }
 
         /// <summary>
@@ -52,19 +53,7 @@ namespace RadioTubes.MBL.Controller
         /// <returns> Список пользователей зарегистрированных на текущий момент</returns>
         private List<User> GetUsersData()
         {
-            var formatter = new BinaryFormatter();
-
-            using (var fs = new FileStream("users.dat", FileMode.OpenOrCreate))
-            {
-                if(fs.Length>0 && formatter.Deserialize(fs) is List<User> users)
-                {
-                    return users;
-                }
-                else
-                {
-                    return  new List<User>();
-                }
-            }
+            return Load<List<User>>("users.dat") ?? new List<User>();
         }
 
         /// <summary>
@@ -72,17 +61,12 @@ namespace RadioTubes.MBL.Controller
         /// </summary>
         private void Save()
         {
-
-            var formatter = new BinaryFormatter();
-            using (var fs = new FileStream("users.dat", FileMode.OpenOrCreate))
-            {
-                formatter.Serialize(fs, Users);
-            }
+            Save("users.dat", Users);
         }
 
-       /// <summary>
-       /// Обновить данные текущего пользователя
-       /// </summary>
+        /// <summary>
+        /// Обновить данные текущего пользователя
+        /// </summary>
         private void UpdateCurrentUserData()
         {
             Users.Remove(CurrentUser);
@@ -97,7 +81,7 @@ namespace RadioTubes.MBL.Controller
         /// <param name="gender"> Пол пользователя </param>
         /// <param name="dateOfBirth"> Дата рождения пользователя </param>
         /// <param name="location"> Место жительства пользователя </param>
-        public void SetRequiredParameters (string gender,
+        public void SetRequiredParameters(string gender,
                                            DateTime dateOfBirth,
                                            Location location)
         {
