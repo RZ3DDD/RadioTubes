@@ -86,7 +86,7 @@ namespace RadioTubes.MBL.Controller.Tests
             // Assert
             Assert.AreEqual(userControllerIn.CurrentUser.FirstName, userControllerOut.CurrentUser.FirstName);
             Assert.AreEqual(userControllerIn.CurrentUser.MiddleName, userControllerOut.CurrentUser.MiddleName);
-            Assert.AreEqual(userControllerIn.CurrentUser.SecondName, userControllerOut.CurrentUser.SecondName);
+            Assert.AreEqual(userControllerIn.CurrentUser.LastName, userControllerOut.CurrentUser.LastName);
             //Console.WriteLine(userControllerOut.CurrentUser);
             //Console.ReadLine();
         }

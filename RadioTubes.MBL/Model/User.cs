@@ -12,7 +12,7 @@ namespace RadioTubes.MBL.Model
         #region Свойства... 
         private string firstName;
         private string middleName;
-        private string secondName;
+        private string lastName;
 
         /// <summary>
         /// Имя пользователя в системе
@@ -55,16 +55,16 @@ namespace RadioTubes.MBL.Model
         /// <summary>
         /// Фамилия пользователя
         /// </summary>
-        public string SecondName
+        public string LastName
         {
             get
             {
-                return secondName;
+                return lastName;
             }
 
             set
             {
-                secondName = value;
+                lastName = value;
             }
 
         }
@@ -100,7 +100,7 @@ namespace RadioTubes.MBL.Model
         }
         public override string ToString()
         {
-            return $"{nameof(UserName)}: {UserName}\n{nameof(FirstName)}: {FirstName}\n{nameof(MiddleName)}: {MiddleName}\n{nameof(SecondName)}: {SecondName}\n{nameof(Gender)}: {Gender}\n{nameof(DateOfBirth)}: {DateOfBirth:dd/MM/yyyy}\n{nameof(Location)}: {Location}\n";
+            return $"{nameof(UserName)}: {UserName}\n{nameof(FirstName)}: {FirstName}\n{nameof(MiddleName)}: {MiddleName}\n{nameof(LastName)}: {LastName}\n{nameof(Gender)}: {Gender}\n{nameof(DateOfBirth)}: {DateOfBirth:dd/MM/yyyy}\n{nameof(Location)}: {Location}\n";
         }
     }
 }

@@ -1,6 +1,9 @@
 ﻿using RadioTubes.MBL.Controller;
 using RadioTubes.MBL.Model;
+using RadioTubes.MBL;
 using System;
+using System.Configuration;
+using System.IO;
 
 namespace RadioTubes.CMD
 {
@@ -12,7 +15,17 @@ namespace RadioTubes.CMD
 
             var args = Environment.GetCommandLineArgs();
             Console.WriteLine($"\n__________________________________________________________________________________\n");
-            Console.WriteLine($"Привет от приложения:\n{args[0]}\n__________________________________________________________________________________\n");
+            Console.WriteLine($"Привет от приложения:\n{args[0]}\n");
+            Console.WriteLine(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName);
+            Console.WriteLine(System.Reflection.Assembly.GetEntryAssembly().Location);
+            Console.WriteLine(Path.GetFileName(System.Reflection.Assembly.GetEntryAssembly().Location));
+            MBLSettings settings = new MBLSettings();
+            Console.WriteLine(settings.UserDataPath + "datas.dat");
+            Console.WriteLine("User Root Directory by default: " + settings.UserRootDir);
+            Console.WriteLine("User AppDataRoaming Directory by default: " + settings.UserAppDataRoaming);
+            Console.WriteLine("User AppDataLocal Directory by default: " + settings.UserAppDataLocal);
+            Console.WriteLine("User Data Directory by default: " + settings.UserDataPath);
+            Console.WriteLine($"\n__________________________________________________________________________________\n");
 
             var name = InputParametr("Имя пользователя");
 

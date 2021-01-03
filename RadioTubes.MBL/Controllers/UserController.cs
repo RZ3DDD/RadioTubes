@@ -2,18 +2,19 @@
 using RadioTubes.MBL.Controllers;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Runtime.Serialization.Formatters.Binary;
 
 namespace RadioTubes.MBL.Controller
 {
+    //static string userRoot = System.Environment.GetEnvironmentVariable("USERPROFILE");
 
     /// <summary>
     /// Контроллер пользователя.
     /// </summary>
     public class UserController : ControllerBaseBinSerialization
     {
+        readonly MBLSettings settings = new MBLSettings();
+
         /// <summary>
         /// Пользователи приложения.
         /// </summary>
@@ -53,7 +54,7 @@ namespace RadioTubes.MBL.Controller
         /// <returns> Список пользователей зарегистрированных на текущий момент</returns>
         private List<User> GetUsersData()
         {
-            return Load<List<User>>("users.dat") ?? new List<User>();
+            return Load<List<User>>(settings.UserDataPath + "users.dat") ?? new List<User>();
         }
 
         /// <summary>
@@ -61,7 +62,7 @@ namespace RadioTubes.MBL.Controller
         /// </summary>
         private void Save()
         {
-            Save("users.dat", Users);
+            Save(settings.UserDataPath + "users.dat", Users);
         }
 
         /// <summary>
@@ -112,11 +113,11 @@ namespace RadioTubes.MBL.Controller
         /// Установить необязательные параметры пользователя
         /// </summary>
         /// <param name="firstName"> Имя пользователя </param>
-        /// <param name="secondName"> Фамилия пользователя  </param>
+        /// <param name="lastName"> Фамилия пользователя  </param>
         /// <param name="middleName"> Отчество пользователя </param>
         public void SetOptionalParameters(string firstName,
                                           string middleName,
-                                          string secondName)
+                                          string lastName)
         {
             #region Проверка корректности вводимых параметров...
             // TODO: Продумать и реализовать проверки для ФИО
@@ -125,14 +126,14 @@ namespace RadioTubes.MBL.Controller
                 //throw new ArgumentException($"{nameof(firstName)} не может быть пустым или содержать только пробел.", nameof(firstName));
             }
 
-            if (string.IsNullOrWhiteSpace(secondName))
+            if (string.IsNullOrWhiteSpace(lastName))
             {
-                //throw new ArgumentException($"{nameof(secondName)} не может быть пустым или содержать только пробел.", nameof(secondName));
+                //throw new ArgumentException($"{nameof(lastName)} не может быть пустым или содержать только пробел.", nameof(lastName));
             }
             #endregion
 
             CurrentUser.FirstName = firstName;
-            CurrentUser.SecondName = secondName;
+            CurrentUser.LastName = lastName;
             CurrentUser.MiddleName = middleName;
             UpdateCurrentUserData();
 

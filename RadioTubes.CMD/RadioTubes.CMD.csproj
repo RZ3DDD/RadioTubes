@@ -47,9 +47,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\RadioTubes.MBL\RadioTubes.MBL.csproj">
       <Project>{b767149f-7830-419c-86bd-462586078363}</Project>
       <Name>RadioTubes.MBL</Name>
