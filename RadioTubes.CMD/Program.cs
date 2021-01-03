@@ -1,9 +1,6 @@
 ﻿using RadioTubes.MBL.Controller;
 using RadioTubes.MBL.Model;
-using RadioTubes.MBL;
 using System;
-using System.Configuration;
-using System.IO;
 
 namespace RadioTubes.CMD
 {
@@ -14,19 +11,11 @@ namespace RadioTubes.CMD
         {
 
             var args = Environment.GetCommandLineArgs();
-            Console.WriteLine($"\n__________________________________________________________________________________\n");
-            Console.WriteLine($"Привет от приложения:\n{args[0]}\n");
-            Console.WriteLine(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName);
-            Console.WriteLine(System.Reflection.Assembly.GetEntryAssembly().Location);
-            Console.WriteLine(Path.GetFileName(System.Reflection.Assembly.GetEntryAssembly().Location));
-            MBLSettings settings = new MBLSettings();
-            Console.WriteLine(settings.UserDataPath + "datas.dat");
-            Console.WriteLine("User Root Directory by default: " + settings.UserRootDir);
-            Console.WriteLine("User AppDataRoaming Directory by default: " + settings.UserAppDataRoaming);
-            Console.WriteLine("User AppDataLocal Directory by default: " + settings.UserAppDataLocal);
-            Console.WriteLine("User Data Directory by default: " + settings.UserDataPath);
-            Console.WriteLine($"\n__________________________________________________________________________________\n");
+            Console.WriteLine("\n" + new string('_', 51) + "\n");
+            Console.WriteLine($"Привет от приложения:\n{args[0]}");
+            Console.WriteLine(new string('_', 51));
 
+            Console.WriteLine(new string('-', 25));
             var name = InputParametr("Имя пользователя");
 
 
@@ -35,7 +24,7 @@ namespace RadioTubes.CMD
             if (userController.CurrentUser.Gender == null || userController.CurrentUser.DateOfBirth == null || userController.CurrentUser.Location == null)
             {
                 Console.WriteLine("\nВведите обязательные параметры пользователя");
-                Console.WriteLine(" -------------------- ");
+                Console.WriteLine(new string('-', 25));
 
                 DateTime dateOfBirth;
 
@@ -71,7 +60,7 @@ namespace RadioTubes.CMD
 
                 } while (cki.Key != ConsoleKey.Y && cki.Key != ConsoleKey.N);
 
-                Console.WriteLine("\n -------------------- ");
+                Console.WriteLine(new string('-', 25));
                 if (cki.Key == ConsoleKey.Y)
                 {
                     userController.SetOptionalParameters(InputParametr("Имя пользователя"),
@@ -80,10 +69,12 @@ namespace RadioTubes.CMD
                 }
             }
 
-            Console.WriteLine("\n");
+            Console.WriteLine(new string('-', 25));
+            Console.WriteLine();
             Console.WriteLine(userController.CurrentUser);
-            Console.WriteLine("\n -------------------- \n");
-
+            Console.WriteLine(new string('-', 25));
+            Console.WriteLine("\n");
+            
             Console.ReadLine();
         }
 

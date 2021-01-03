@@ -6,7 +6,6 @@ using System.Linq;
 
 namespace RadioTubes.MBL.Controller
 {
-    //static string userRoot = System.Environment.GetEnvironmentVariable("USERPROFILE");
 
     /// <summary>
     /// Контроллер пользователя.
