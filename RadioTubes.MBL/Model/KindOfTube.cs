@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 namespace RadioTubes.MBL.Model
 {
@@ -7,23 +8,26 @@ namespace RadioTubes.MBL.Model
     /// </summary>
     class KindOfTube
     {
-        public KindOfTube()
+        static int nextId;
+        public KindOfTube(string nameEng = "none", string nameCult = "")
         {
-            NameEng = "none";
-            NameCult = "";
-        }
-        public KindOfTube(int id, string nameEng, string nameCult)
-        {
-            Id = id;
+            Id = Interlocked.Increment(ref nextId);
             NameEng = nameEng.ToLower();
-            NameCult = nameCult;
+            NameCult = nameCult.ToLower();
         }
 
-        public string ToString()
+        /// <summary>
+        /// Перезагрузка метода ToString()
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
         {
             return $"Eng: {NameEng}   Cult: {NameCult}";
         }
 
+        /// <summary>
+        ///  Id типа лампы
+        /// </summary>
         public int Id
         {
             get => default;
@@ -33,6 +37,9 @@ namespace RadioTubes.MBL.Model
             }
         }
 
+        /// <summary>
+        /// Наименование типа лампы на English
+        /// </summary>
         public string NameEng
         {
             get => default;
@@ -42,6 +49,9 @@ namespace RadioTubes.MBL.Model
             }
         }
 
+        /// <summary>
+        /// Наименование типа лампы на языке локали
+        /// </summary>
         public string NameCult
         {
             get => default;

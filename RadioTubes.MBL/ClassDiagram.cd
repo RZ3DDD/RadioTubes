@@ -3,7 +3,7 @@
   <Class Name="RadioTubes.MBL.Model.User">
     <Position X="0.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAEgAAABAAACEAAIQAAAAEAAQAAAACQAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAEAAAABAAACEAAIQAAAAEAAQAAAAAQAACAAAAAg=</HashCode>
       <FileName>Model\User.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -12,7 +12,7 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="RadioTubes.MBL.Model.Location">
-    <Position X="3" Y="1.5" Width="1.5" />
+    <Position X="3" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAgAIAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model\Location.cs</FileName>
@@ -25,40 +25,56 @@
       <FileName>Model\Gender.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="RadioTubes.MBL.Model.RadioTube">
-    <Position X="8.75" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAACAAEAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Model\RadioTube.cs</FileName>
-    </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="TubeKind" />
-    </ShowAsAssociation>
-  </Class>
   <Class Name="RadioTubes.MBL.Model.KindOfTube">
-    <Position X="11.5" Y="1" Width="1.5" />
+    <Position X="10.5" Y="4" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAGAAAAAAAAAAAEAAAAAAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAGAAAAAAAAAAAEABAAAAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model\KindOfTube.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="RadioTubes.MBL.Model.StoragePart">
     <Position X="6" Y="0.5" Width="1.5" />
+    <AssociationLine Name="RadioTube" Type="RadioTubes.MBL.Model.RadioTube" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="7.281" Y="2.247" />
+        <Point X="7.281" Y="3.468" />
+        <Point X="8.511" Y="3.468" />
+        <Point X="8.511" Y="3.75" />
+        <Point X="8.562" Y="3.75" />
+      </Path>
+    </AssociationLine>
     <TypeIdentifier>
       <HashCode>AAALAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAE=</HashCode>
       <FileName>Model\StoragePart.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="User" />
-      <Property Name="RadioTube" />
       <Property Name="StorageBox" />
+      <Property Name="RadioTube" />
     </ShowAsAssociation>
   </Class>
   <Class Name="RadioTubes.MBL.Model.StorageBox">
-    <Position X="8.75" Y="2.5" Width="1.5" />
+    <Position X="5.5" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
       <FileName>Model\StorageBox.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RadioTubes.MBL.Model.RadioTube">
+    <Position X="8.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAEAAAAAAAAAABAAAAAAAAAACAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\RadioTube.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="TubeKind" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="RadioTubes.MBL.Model.RadioComponent">
+    <Position X="9.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>Model\RadioComponent.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

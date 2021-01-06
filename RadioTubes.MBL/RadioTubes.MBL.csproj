@@ -43,11 +43,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\ControllerBaseBinSerialization.cs" />
+    <Compile Include="Controllers\KindOfTubeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="MBLSettings.cs" />
     <Compile Include="Model\Gender.cs" />
     <Compile Include="Model\KindOfTube.cs" />
     <Compile Include="Model\Location.cs" />
+    <Compile Include="Model\RadioComponent.cs" />
     <Compile Include="Model\RadioTube.cs" />
     <Compile Include="Model\StorageBox.cs" />
     <Compile Include="Model\StoragePart.cs" />

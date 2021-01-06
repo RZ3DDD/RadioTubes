@@ -1,10 +1,13 @@
-﻿namespace RadioTubes.MBL.Model
+﻿using System.Threading;
+
+namespace RadioTubes.MBL.Model
 {
-    class RadioTube
+    class RadioTube : RadioComponent
     {
-        public RadioTube(KindOfTube kindOfTube, int id, KindOfTube tubeKind, string tubeName)
+        static int nextId;
+        public RadioTube(KindOfTube tubeKind, string tubeName)
         {
-            Id = id;
+            Id = Interlocked.Increment(ref nextId);
             TubeKind = tubeKind;
             TubeName = tubeName;
         }

@@ -1,6 +1,7 @@
 ﻿using RadioTubes.MBL.Controller;
 using RadioTubes.MBL.Model;
 using System;
+using System.Threading;
 
 namespace RadioTubes.CMD
 {
@@ -14,6 +15,13 @@ namespace RadioTubes.CMD
             Console.WriteLine("\n" + new string('_', 51) + "\n");
             Console.WriteLine($"Привет от приложения:\n{args[0]}");
             Console.WriteLine(new string('_', 51));
+
+            var loc = System.Globalization.CultureInfo.CurrentCulture;
+            Console.WriteLine(loc);
+            var uiloc = System.Globalization.CultureInfo.CurrentCulture;
+            Console.WriteLine(uiloc);
+            var trloc = Thread.CurrentThread.CurrentUICulture;
+            Console.WriteLine(trloc);
 
             Console.WriteLine(new string('-', 25));
             var name = InputParametr("Имя пользователя");
@@ -75,7 +83,7 @@ namespace RadioTubes.CMD
             Console.WriteLine(new string('-', 25));
             Console.WriteLine("\n");
             
-            Console.ReadLine();
+            //Console.ReadLine();
         }
 
         public static string InputParametr(string text, int minLength = 2)

@@ -23,7 +23,15 @@ namespace RadioTubes.MBL
             userAppDataLocal = GetDefaultSetting("LOCALAPPDATA", "userAppDataLocal");
 
             userDataPath = Settings.Default["userDataPath"] as string;
-            string programName = Path.GetFileName(System.Reflection.Assembly.GetEntryAssembly().Location);
+            string programName;
+            try
+            {
+                programName = Path.GetFileName(System.Reflection.Assembly.GetEntryAssembly().Location);
+            }
+            catch (NullReferenceException)
+            {
+                programName = "RadioTubesTest12345678";
+            }
             string currentUserDataPath = userAppDataLocal + "\\" + programName.Remove(programName.Length - 8) + @"\Data\";
             if (string.IsNullOrEmpty(userDataPath) || !currentUserDataPath.Equals(userDataPath))
             {
