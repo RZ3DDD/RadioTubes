@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace RadioTubes.MBL.Controllers
 {
-    class KindOfTubeController : ControllerBaseBinSerialization
+    public class KindOfTubeController : ControllerBaseBinSerialization
 
     {
         readonly MBLSettings settings = new MBLSettings();

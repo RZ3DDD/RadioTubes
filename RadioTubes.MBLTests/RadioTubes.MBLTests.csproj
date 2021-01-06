@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8B819B25-0169-4831-BB50-DF83A9C33C0D}</ProjectGuid>
+    <ProjectGuid>{9E4F8E80-DCA7-453E-B918-E8A50F28C50E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RadioTubes.MBLTests2</RootNamespace>
-    <AssemblyName>RadioTubes.MBLTests2</AssemblyName>
+    <RootNamespace>RadioTubes.MBLTests</RootNamespace>
+    <AssemblyName>RadioTubes.MBLTests</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -56,6 +56,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="Controllers\KindOfTubeControllerTests.cs" />
     <Compile Include="Controllers\UserControllerTests.cs" />
     <Compile Include="Model\GenderTests.cs" />
     <Compile Include="Model\LocationTests.cs" />

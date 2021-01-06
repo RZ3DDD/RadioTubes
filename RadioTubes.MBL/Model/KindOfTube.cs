@@ -6,7 +6,7 @@ namespace RadioTubes.MBL.Model
     /// <summary>
     /// Тип лампы (диод, триод, двойной триод ...)
     /// </summary>
-    class KindOfTube
+    public class KindOfTube
     {
         static int nextId;
         public KindOfTube(string nameEng = "none", string nameCult = "")

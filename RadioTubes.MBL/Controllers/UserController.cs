@@ -1,10 +1,9 @@
 ﻿using RadioTubes.MBL.Model;
-using RadioTubes.MBL.Controllers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace RadioTubes.MBL.Controller
+namespace RadioTubes.MBL.Controllers
 {
 
     /// <summary>

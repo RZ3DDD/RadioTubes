@@ -3,7 +3,7 @@ using RadioTubes.MBL.Model;
 using System;
 using System.IO;
 
-namespace RadioTubes.MBL.Controller.Tests
+namespace RadioTubes.MBL.Controllers.Tests
 {
     [TestClass()]
     public class UserControllerTests
