@@ -20,59 +20,75 @@ namespace RadioTubes.MBL.Controllers
         /// </summary>
         public KindOfTube CurrentKindOfTube { get; }
 
-        public KindOfTubeController()
-        {
-        }
-
-
 
         /// <summary>
         /// Создание нового контроллера типа лампы.
         /// </summary>
-        /// <param name="userName"> Пользователь приложения </param>
+        /// <param engName="kindOfTubeEngName"> Тип лампы </param>
         public KindOfTubeController(string engName)
         {
-            //    if (string.IsNullOrWhiteSpace(engName))
-            //    {
-            //        throw new ArgumentNullException("Наименование типа лампы на English не может быть пустым", nameof(engName));
-            //    }
+            if (string.IsNullOrWhiteSpace(engName))
+            {
+                throw new ArgumentNullException("Наименование типа лампы на English не может быть пустым", nameof(engName));
+            }
 
-            //    KindOfTubes = GetKindOfTubesData();
-            //CurrentKindOfTube = KindOfTubes.SingleOrDefault(n => n.EngName == engName);
+            KindOfTubes = GetKindOfTubesData();
+            
+            // Установить начальное значение счетчика для Id
+            KindOfTube lastKindOfTube = KindOfTubes.LastOrDefault<KindOfTube>();
+            if (lastKindOfTube == null)
+            {
+                KindOfTube.nextId = 0;
+            }
+            else
+            {
+                KindOfTube.nextId = lastKindOfTube.ID;
+            }
 
-            //    if (CurrentKindOfTube == null)
-            //    {
-            CurrentKindOfTube = new KindOfTube(engName);
-            //        KindOfTubes.Add(CurrentKindOfTube);
-            //        Save();
+            // Установить требуемый тип лампы текущим
+            CurrentKindOfTube = KindOfTubes.SingleOrDefault(n => n.EngName == engName);
+            if (CurrentKindOfTube == null)
+            {
+                CurrentKindOfTube = new KindOfTube(engName);
+                KindOfTubes.Add(CurrentKindOfTube);
+                Save();
+            }
+
         }
 
-        //}
-
         /// <summary>
-        /// Получить список зарегистрированных пользователей
+        /// Получить список зарегистрированных типов ламп
         /// </summary>
-        /// <returns> Список пользователей зарегистрированных на текущий момент</returns>
+        /// <returns> Список типов ламп зарегистрированных на текущий момент</returns>
         private List<KindOfTube> GetKindOfTubesData()
         {
             return Load<List<KindOfTube>>(settings.UserDataPath + "kind_of_tubes.dat") ?? new List<KindOfTube>();
         }
 
         /// <summary>
-        /// Сохранить данные списка зарегистрированных пользователей.
+        /// Сохранить данные списка зарегистрированных типов ламп.
         /// </summary>
         private void Save()
         {
             Save(settings.UserDataPath + "kind_of_tubes.dat", KindOfTubes);
         }
 
+        public void SetOptionalParameters(string cultName)
+        {
+
+            CurrentKindOfTube.CultName = cultName;
+            UpdateCurrentKindOfTube();
+
+        }
+
         /// <summary>
-        /// Обновить данные текущего пользователя
+        /// Обновить данные текущего типа лампы
         /// </summary>
         private void UpdateCurrentKindOfTube()
         {
             KindOfTubes.Remove(CurrentKindOfTube);
             KindOfTubes.Add(CurrentKindOfTube);
+            KindOfTubes.Sort();
             Save();
         }
     }

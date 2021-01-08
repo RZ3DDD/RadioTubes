@@ -13,39 +13,40 @@ namespace RadioTubes.MBL.Controllers.Tests
         {
             // Arrange
             // Удалить существующий файл со списком тестовых типов ламп, если он есть
-            //MBLSettings settings = new MBLSettings();
-            //var fi = new FileInfo(settings.UserDataPath + "kind_of_tubes.dat");
-            //if (fi.Exists) fi.Delete();
+            MBLSettings settings = new MBLSettings();
+            var fi = new FileInfo(settings.UserDataPath + "kind_of_tubes.dat");
+            if (fi.Exists) fi.Delete();
 
             //Act
             // Создать чистый существующий тип лампы
             // Создать новый файл и записать очищенный список тестовых типов пользователей
-            //var existingKindOfTube = new KindOfTubeController("ExistingTube");
-            //var existingKindOfTube = new KindOfTubeController();
+            var kindOfTubeExisting = "Existing Tube";
+            var existingKindOfTube = new KindOfTubeController(kindOfTubeExisting);
 
             // Assert
-            //Assert.AreEqual(existingKindOfTube.CurrentKindOfTube.EngName, "ExistingTube");
-            Assert.Fail();
+            Assert.AreEqual(existingKindOfTube.CurrentKindOfTube.EngName, kindOfTubeExisting.ToLower().Trim());
         }
-        //public void KindOfTubeControllerTest()
-        //{
-        //    // Arrange
-        //    var kindOfTubeNull = "";
-        //    var kindOfTubeEmpty = "      ";
-        //    var kindOfTubeNew = Guid.NewGuid().ToString() + "-test";
-        //    var kindOfTubeExisting = "ExistingTube";
 
-        //    // Act
-        //    var kindOfTubeController1 = new KindOfTubeController(kindOfTubeExisting);
-        //    var kindOfTubeController2 = new KindOfTubeController(kindOfTubeNew);
+        [TestMethod()]
+        public void KindOfTubeControllerTest()
+        {
+            // Arrange
+            var kindOfTubeNull = "";
+            var kindOfTubeEmpty = "      ";
+            var kindOfTubeNew = Guid.NewGuid().ToString() + "-test";
+            var kindOfTubeExisting = "Existing Tube";
+
+            // Act
+            var kindOfTubeController1 = new KindOfTubeController(kindOfTubeExisting);
+            var kindOfTubeController2 = new KindOfTubeController(kindOfTubeNew);
 
 
-        //    //Assert
-        //    Assert.AreEqual(kindOfTubeExisting, kindOfTubeController1.CurrentKindOfTube.EngName);
-        //    Assert.AreEqual(kindOfTubeNew, kindOfTubeController2.CurrentKindOfTube.EngName);
-        //    Assert.ThrowsException<ArgumentNullException>(() => new KindOfTubeController(kindOfTubeNull));
-        //    Assert.ThrowsException<ArgumentNullException>(() => new KindOfTubeController(kindOfTubeEmpty));
-        //}
+            //Assert
+            Assert.AreEqual(kindOfTubeExisting.ToLower().Trim(), kindOfTubeController1.CurrentKindOfTube.EngName);
+            Assert.AreEqual(kindOfTubeNew.ToLower().Trim(), kindOfTubeController2.CurrentKindOfTube.EngName);
+            Assert.ThrowsException<ArgumentNullException>(() => new KindOfTubeController(kindOfTubeNull));
+            Assert.ThrowsException<ArgumentNullException>(() => new KindOfTubeController(kindOfTubeEmpty));
+        }
 
         //[TestMethod()]
         //public void SetOptionalCultNameParameterTest()

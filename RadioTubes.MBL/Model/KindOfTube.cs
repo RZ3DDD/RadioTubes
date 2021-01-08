@@ -9,12 +9,24 @@ namespace RadioTubes.MBL.Model
     [Serializable]
     public class KindOfTube
     {
-        static int nextId = 0;
-        public KindOfTube(string engName = "none", string ccultName = "")
+        public static int nextId;
+        readonly int Id;
+        readonly private string englishName;
+        private string cultureName;
+        
+        public KindOfTube(string engName = "none", string cultName = "")
         {
-            Id = nextId++; //Interlocked.Increment(ref nextId);
-            EngName = engName;
-            CultName = ccultName;
+            Id = Interlocked.Increment(ref nextId);
+            if (string.IsNullOrWhiteSpace(engName))
+            {
+                throw new ArgumentException($"{nameof(engName)} = \"{engName}\" не может быть пустым или содержать только пробел.", nameof(engName));
+            }
+            else
+            {
+                englishName = engName.Trim().ToLower();
+            }
+            //TODO: как проверить, что в строке буквы только для English или другой локали и несколько других символов?
+            cultureName = cultName.Trim().ToLower();
         }
 
         /// <summary>
@@ -23,18 +35,17 @@ namespace RadioTubes.MBL.Model
         /// <returns></returns>
         public override string ToString()
         {
-            return $"Eng: {EngName}   Cult: {CultName}";
+            return $"Id: {ID}   Eng: {EngName}   Cult: {CultName}";
         }
 
         /// <summary>
         ///  Id типа лампы
         /// </summary>
-        public int Id
+        public int ID
         {
-            get => default;
-            set
+            get
             {
-                Id = value;
+                return Id;
             }
         }
 
@@ -43,59 +54,29 @@ namespace RadioTubes.MBL.Model
         /// </summary>
         public string EngName
         {
-            get => default;
-            set
-            {
-                if (string.IsNullOrWhiteSpace(value))
-                {
-                    throw new ArgumentException($"{nameof(value)} не может быть пустым или содержать только пробел.", nameof(value));
-                }
-                else
-                {
-                    EngName = value.Trim().ToLower();
-                }
-            }
+            get => englishName;
         }
 
         /// <summary>
         /// Наименование типа лампы на языке локали
         /// </summary>
-        private string cultName;
-
-        public string  CultName
+        public string CultName
         {
             get
             {
-                if (string.IsNullOrWhiteSpace(cultName))
+                if (string.IsNullOrWhiteSpace(cultureName))
                 {
                     return EngName;
                 }
                 else
                 {
-                    return cultName;
+                    return cultureName;
                 }
             }
-            set { cultName = value.Trim().ToLower(); }
+            set
+            {
+                cultureName = value.Trim().ToLower();
+            }
         }
-
-        //private string cultName;
-        //public string CultName
-        //{
-        //    get
-        //    {
-        //        if (string.IsNullOrWhiteSpace(cultName))
-        //        {
-        //            CultName = EngName;
-        //        }
-        //        else
-        //        {
-        //            CultName = cultName;
-        //        }
-        //    }
-        //    set
-        //    {
-        //        cultName = value;
-        //    }
-        //}
     }
 }
