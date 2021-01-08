@@ -6,14 +6,15 @@ namespace RadioTubes.MBL.Model
     /// <summary>
     /// Тип лампы (диод, триод, двойной триод ...)
     /// </summary>
+    [Serializable]
     public class KindOfTube
     {
-        static int nextId;
-        public KindOfTube(string nameEng = "none", string nameCult = "")
+        static int nextId = 0;
+        public KindOfTube(string engName = "none", string ccultName = "")
         {
-            Id = Interlocked.Increment(ref nextId);
-            NameEng = nameEng.ToLower();
-            NameCult = nameCult.ToLower();
+            Id = nextId++; //Interlocked.Increment(ref nextId);
+            EngName = engName;
+            CultName = ccultName;
         }
 
         /// <summary>
@@ -22,7 +23,7 @@ namespace RadioTubes.MBL.Model
         /// <returns></returns>
         public override string ToString()
         {
-            return $"Eng: {NameEng}   Cult: {NameCult}";
+            return $"Eng: {EngName}   Cult: {CultName}";
         }
 
         /// <summary>
@@ -40,25 +41,61 @@ namespace RadioTubes.MBL.Model
         /// <summary>
         /// Наименование типа лампы на English
         /// </summary>
-        public string NameEng
+        public string EngName
         {
             get => default;
             set
             {
-                NameEng = value;
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentException($"{nameof(value)} не может быть пустым или содержать только пробел.", nameof(value));
+                }
+                else
+                {
+                    EngName = value.Trim().ToLower();
+                }
             }
         }
 
         /// <summary>
         /// Наименование типа лампы на языке локали
         /// </summary>
-        public string NameCult
+        private string cultName;
+
+        public string  CultName
         {
-            get => default;
-            set
+            get
             {
-                NameCult = value;
+                if (string.IsNullOrWhiteSpace(cultName))
+                {
+                    return EngName;
+                }
+                else
+                {
+                    return cultName;
+                }
             }
+            set { cultName = value.Trim().ToLower(); }
         }
+
+        //private string cultName;
+        //public string CultName
+        //{
+        //    get
+        //    {
+        //        if (string.IsNullOrWhiteSpace(cultName))
+        //        {
+        //            CultName = EngName;
+        //        }
+        //        else
+        //        {
+        //            CultName = cultName;
+        //        }
+        //    }
+        //    set
+        //    {
+        //        cultName = value;
+        //    }
+        //}
     }
 }

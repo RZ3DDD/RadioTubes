@@ -20,28 +20,34 @@ namespace RadioTubes.MBL.Controllers
         /// </summary>
         public KindOfTube CurrentKindOfTube { get; }
 
+        public KindOfTubeController()
+        {
+        }
+
+
+
         /// <summary>
         /// Создание нового контроллера типа лампы.
         /// </summary>
         /// <param name="userName"> Пользователь приложения </param>
         public KindOfTubeController(string engName)
         {
-            if (string.IsNullOrWhiteSpace(engName))
-            {
-                throw new ArgumentNullException("Наименование типа лампы на English не может быть пустым", nameof(engName));
-            }
+            //    if (string.IsNullOrWhiteSpace(engName))
+            //    {
+            //        throw new ArgumentNullException("Наименование типа лампы на English не может быть пустым", nameof(engName));
+            //    }
 
-            KindOfTubes = GetKindOfTubesData();
-            CurrentKindOfTube = KindOfTubes.SingleOrDefault(n => n.NameEng == engName);
+            //    KindOfTubes = GetKindOfTubesData();
+            //CurrentKindOfTube = KindOfTubes.SingleOrDefault(n => n.EngName == engName);
 
-            if (CurrentKindOfTube == null)
-            {
-                CurrentKindOfTube = new KindOfTube(engName);
-                KindOfTubes.Add(CurrentKindOfTube);
-                Save();
-            }
-
+            //    if (CurrentKindOfTube == null)
+            //    {
+            CurrentKindOfTube = new KindOfTube(engName);
+            //        KindOfTubes.Add(CurrentKindOfTube);
+            //        Save();
         }
+
+        //}
 
         /// <summary>
         /// Получить список зарегистрированных пользователей

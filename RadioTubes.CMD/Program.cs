@@ -82,6 +82,9 @@ namespace RadioTubes.CMD
             Console.WriteLine(userController.CurrentUser);
             Console.WriteLine(new string('-', 25));
             Console.WriteLine("\n");
+
+            KindOfTube kindOfTube = new KindOfTube();
+            Console.WriteLine(kindOfTube);
             
             //Console.ReadLine();
         }

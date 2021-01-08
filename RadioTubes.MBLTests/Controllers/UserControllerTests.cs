@@ -13,7 +13,8 @@ namespace RadioTubes.MBL.Controllers.Tests
         {
             // Arrange
             // Удалить существующий файл со списком тестовых пользователей если он есть
-            var fi = new FileInfo("users.dat");
+            MBLSettings settings = new MBLSettings();
+            var fi = new FileInfo(settings.UserDataPath + "users.dat");
             if (fi.Exists) fi.Delete();
 
             //Act
@@ -37,7 +38,6 @@ namespace RadioTubes.MBL.Controllers.Tests
             // Act
             var userController1 = new UserController(userExisting);
             var userController2 = new UserController(userNew);
-            //var userController3 = new UserController(userNull);
 
 
             //Assert
