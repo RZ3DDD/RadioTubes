@@ -7,7 +7,6 @@ namespace RadioTubes.CMD
 {
     class Program
     {
-
         static void Main()
         {
 
@@ -26,28 +25,37 @@ namespace RadioTubes.CMD
             UserController userController;
             KindOfTubeController kindOfTubeController;
 
-            string menuItemPrefix = "--->  ";
+            string menuItemPrefix = "    ";
             do
             {
                 Console.WriteLine(new string('-', 45));
-                Console.WriteLine("Задайте активность:");
-                Console.WriteLine(menuItemPrefix + "U - ввести пользователя");
-                Console.WriteLine(menuItemPrefix + "K - ввести тип лампы");
+                Console.WriteLine("Задайте активность нажатием клавиши:");
+                Console.WriteLine(menuItemPrefix + "U - выбрать/ввести пользователя");
+                Console.WriteLine(menuItemPrefix + "K - выбрать/ввести тип лампы");
                 Console.WriteLine(menuItemPrefix + "Q - выйти из программы");
+                Console.Write("==> ");
                 var cki = Console.ReadKey(true);
+                Console.WriteLine(cki.Key);
                 switch (cki.Key)
                 {
                     case ConsoleKey.U:
+                        Console.WriteLine(new string('-', 45));
+                        Console.WriteLine("Выбрать пользователя:");
                         userController = GetUser();
                         PrintCurrentUserInfo(userController);
                         break;
 
                     case ConsoleKey.K:
+                        Console.WriteLine(new string('-', 45));
+                        Console.WriteLine("Выбрать тип лампы:");
                         kindOfTubeController = GetKindOfTubeController();
                         PrintCurrentKindOfTube(kindOfTubeController);
                         break;
 
                     case ConsoleKey.Q:
+                        Console.WriteLine(new string('-', 45));
+                        Console.WriteLine("До встречи!");
+                        Console.WriteLine(new string('-', 45));
                         Environment.Exit(0);
                         break;
 
@@ -55,19 +63,7 @@ namespace RadioTubes.CMD
                         break;
                 }
                 Console.WriteLine("\n");
-
             } while (true);
-
-
-            //KindOfTube kindOfTube = new KindOfTube();
-            //Console.WriteLine(kindOfTube);
-            //KindOfTube kindOfTube1 = new KindOfTube();
-            //kindOfTube1.CultName = "ИмениЛампыНет";
-            //Console.WriteLine(kindOfTube1);
-            //KindOfTube kindOfTube2 = new KindOfTube("diode", "диод");
-            //Console.WriteLine(kindOfTube2);
-
-            //Console.ReadLine();
         }
 
         private static UserController GetUser()
@@ -76,7 +72,7 @@ namespace RadioTubes.CMD
             var name = InputParametr("Имя пользователя");
 
 
-            UserController userLocalController = new UserController(name);
+            UserController userLocalController = new UserController(name.Trim().Replace(" ", ""));
 
             if (userLocalController.CurrentUser.Gender == null || userLocalController.CurrentUser.DateOfBirth == null || userLocalController.CurrentUser.Location == null)
             {
@@ -101,7 +97,11 @@ namespace RadioTubes.CMD
                                                      dateOfBirth,
                                                      new Location(InputParametr("Страна пользователя"),
                                                                   InputParametr("Населённый пункт проживания пользователя")));
+            }
 
+            if(string.IsNullOrWhiteSpace(userLocalController.CurrentUser.FirstName) ||
+               string.IsNullOrWhiteSpace(userLocalController.CurrentUser.LastName))
+            {
                 ConsoleKeyInfo cki = new ConsoleKeyInfo('y', ConsoleKey.Y, false, false, false);
                 Console.Write("\n\nБудете вводить необязательные параметры пользователя? (Y/n): ");
                 do
@@ -121,8 +121,8 @@ namespace RadioTubes.CMD
                 if (cki.Key == ConsoleKey.Y)
                 {
                     userLocalController.SetOptionalParameters(InputParametr("Имя пользователя"),
-                                                         InputParametr("Отчество пользователя"),
-                                                         InputParametr("Фамилия пользователя"));
+                                                              InputParametr("Отчество пользователя"),
+                                                              InputParametr("Фамилия пользователя"));
                 }
             }
             return userLocalController;
@@ -176,7 +176,7 @@ namespace RadioTubes.CMD
         private static void PrintCurrentKindOfTube(KindOfTubeController currentKindOfTubeController)
         {
             Console.WriteLine(new string('-', 25));
-            Console.WriteLine("Информация о текущем пользователе");
+            Console.WriteLine("Информация о текущем типе лампы");
             Console.WriteLine(new string('-', 25));
             Console.WriteLine();
             Console.WriteLine(currentKindOfTubeController.CurrentKindOfTube);

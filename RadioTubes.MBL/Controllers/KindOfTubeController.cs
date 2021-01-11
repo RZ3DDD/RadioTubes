@@ -46,7 +46,7 @@ namespace RadioTubes.MBL.Controllers
             }
 
             // Установить требуемый тип лампы текущим
-            CurrentKindOfTube = KindOfTubes.SingleOrDefault(n => n.EngName == engName);
+            CurrentKindOfTube = KindOfTubes.SingleOrDefault(n => n.EngName == engName.ToLower().Trim());
             if (CurrentKindOfTube == null)
             {
                 CurrentKindOfTube = new KindOfTube(engName);
@@ -73,22 +73,23 @@ namespace RadioTubes.MBL.Controllers
             Save(settings.UserDataPath + "kind_of_tubes.dat", KindOfTubes);
         }
 
+        /// <summary>
+        /// Установить необязательные параметры типа лампы
+        /// </summary>
+        /// <param name="cultName"></param>
         public void SetOptionalParameters(string cultName)
         {
-
             CurrentKindOfTube.CultName = cultName;
             UpdateCurrentKindOfTube();
-
         }
 
         /// <summary>
-        /// Обновить данные текущего типа лампы
+        /// Обновить в списке типов ламп данные текущего типа лампы
         /// </summary>
         private void UpdateCurrentKindOfTube()
         {
-            KindOfTubes.Remove(CurrentKindOfTube);
-            KindOfTubes.Add(CurrentKindOfTube);
-            KindOfTubes.Sort();
+            int index = KindOfTubes.IndexOf(KindOfTubes.Where(n => n.EngName == CurrentKindOfTube.EngName).FirstOrDefault());
+            KindOfTubes[index] = CurrentKindOfTube;
             Save();
         }
     }

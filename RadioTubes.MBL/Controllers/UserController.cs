@@ -18,6 +18,7 @@ namespace RadioTubes.MBL.Controllers
         /// </summary>
         public List<User> Users { get; }
 
+
         /// <summary>
         /// Текущий пользователь приложения
         /// </summary>
@@ -68,9 +69,8 @@ namespace RadioTubes.MBL.Controllers
         /// </summary>
         private void UpdateCurrentUserData()
         {
-            Users.Remove(CurrentUser);
-            Users.Add(CurrentUser);
-            //Users.Sort();
+            int index = Users.IndexOf(Users.Where(n => n.UserName == CurrentUser.UserName).FirstOrDefault());
+            Users[index] = CurrentUser;
             Save();
         }
 
@@ -130,9 +130,9 @@ namespace RadioTubes.MBL.Controllers
             }
             #endregion
 
-            CurrentUser.FirstName = firstName;
-            CurrentUser.LastName = lastName;
-            CurrentUser.MiddleName = middleName;
+            CurrentUser.FirstName = firstName.Trim();
+            CurrentUser.LastName = lastName.Trim();
+            CurrentUser.MiddleName = middleName.Trim();
             UpdateCurrentUserData();
 
         }
